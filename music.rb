@@ -21,3 +21,24 @@ class LiveMIDI
     message(PC | channel, preset)
   end
 end
+
+if RUBY_PLATFORM.include?('mswin')
+class LiveMIDI
+  class LiveMIDI
+  module C
+  extend DL::Importable
+  dlload 'winmm'
+  end
+  end
+end
+elsif RUBY_PLATFORM.include?('darwin')
+class LiveMIDI
+# Mac code here
+end
+elsif RUBY_PLATFORM.include?('linux')
+class LiveMIDI
+# Linux code here
+end
+else
+raise "Couldn't find a LiveMIDI implementation for your platform"
+end
